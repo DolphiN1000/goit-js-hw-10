@@ -33,13 +33,13 @@ function onInput(event) {
     .then(countries => {
       console.log(countries);
       const countriesLength = countries.length;
-      console.log(countriesLength)
- if (countriesLength === 1) {
-  clearMarkup();
+      console.log(countriesLength);
+      if (countriesLength === 1) {
+        clearMarkup();
         const markupCard = createContryCard(countries);
         console.log(markupCard); // alert('1');
         refs.info.insertAdjacentHTML('beforeend', markupCard);
-       
+
         return;
       }
       if (countriesLength >= 2 && countriesLength <= 10) {
@@ -48,9 +48,9 @@ function onInput(event) {
         refs.list.insertAdjacentHTML('beforeend', markup);
         return;
       }
-     
+
       if (countriesLength > 10) {
-        clearMarkup()
+        clearMarkup();
         Notiflix.Notify.info(
           'Too many matches found. Please enter a more specific name.'
         );
@@ -59,7 +59,9 @@ function onInput(event) {
     })
     .catch(error => {
       clearMarkup();
-      Notiflix.Notify.failure(`Oops, there is no country with that name${error.status}`);
+      Notiflix.Notify.failure(
+        `Oops, there is no country with that name${error.status}`
+      );
     });
 }
 
@@ -68,21 +70,18 @@ function clearMarkup() {
   refs.info.innerHTML = CLEAR;
 }
 
-
-
 function createContryList(countries = []) {
-  return countries
-    .map(
-      country =>
-        `<li class="country-list__item list">
+  return countries.map(
+    country =>
+      `<li class="country-list__item list">
          <img class="country-list__flags" src="${country.flags.svg}" alt="Flag of " width="80" height="60" />
         <p class="country-list__name-official">${country.name.official}</p>
         
        
        
        </li>`
-    )
-    // .join('');
+  );
+  // .join('');
   // refs.list.insertAdjacentHTML('beforeend', countryListMarkup);
 }
 
@@ -111,7 +110,9 @@ function createContryCard(countries = []) {
         </li>
         <li class="country-info-item list">
           <p class="country-info-text">Languages:&nbsp</p>
-          <p class="country-list__languages">${Object.values(country.languages)}</p>
+          <p class="country-list__languages">${Object.values(
+            country.languages
+          )}</p>
         </li>
       </ul>`
     )
