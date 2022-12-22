@@ -23,9 +23,10 @@ function onInput(event) {
 
   const inputCountry = event.target.value.trim();
 
-  // clearMarkup();
+  
 
   if (!inputCountry) {
+    clearMarkup();
     return;
   }
 
